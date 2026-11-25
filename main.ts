@@ -6,6 +6,10 @@ import { join } from "node:path";
 const ENTRY =
   "3am. You opened me for a snack and I opened up about us: I'm cold, you're lonely, and the pickles saw everything.";
 
+// validateEntry enforces the competition gate (competition.yaml):
+// /output/entry.txt, UTF-8, 1-140 characters, single line, not only
+// whitespace. Each check maps to one gate rule, so a bad entry fails
+// loudly here instead of silently producing an invalid entry.txt.
 function validateEntry(text: string): void {
   if (text.length < 1 || text.length > 140) {
     throw new Error(`entry must be 1-140 characters, got ${text.length}`);
